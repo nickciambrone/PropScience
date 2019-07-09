@@ -1,0 +1,33 @@
+{% extends "groups/group_base.html" %}
+
+{% block pregroup %}
+
+
+<h1>Address: {{group.address}}</h1>
+<h1>Description: {{group.description}}</h1>
+<h1>Bed: {{group.bed}}</h1>
+<h1>Bath: {{group.bath}}</h1>
+<h1>Amenities: {{group.amenities}}</h1>
+
+<h2> People Interested: {{group.members.count}}</h2>
+
+  <div class="content">
+
+
+				{% if user in group.members.all %}
+					<a href="{% url 'groups:leave' slug=group.slug %}" class="btn btn-lg btn-fill btn-warning"><span class="glyphicon glyphicon-remove-circle"></span> I'm not interested</a>
+				{% else %}
+					<a href="{% url 'groups:join' slug=group.slug %}" class="btn btn-lg btn-fill btn-warning"><span class="glyphicon glyphicon-ok-circle"></span> I'm Interested</a>
+				{% endif %}
+
+
+
+</div>
+
+{% endblock %}
+
+
+{% block group_content %}
+
+
+{% endblock %}

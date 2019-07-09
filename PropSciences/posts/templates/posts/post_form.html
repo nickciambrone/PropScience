@@ -1,0 +1,87 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style>
+		    html, body, #viewDiv {
+		      padding: 0;
+		      margin: 0;
+		      height: 100%;
+		      width: 100%;
+		    }
+		  </style>
+
+		  <link rel="stylesheet" href="https://js.arcgis.com/4.12/esri/css/main.css">
+		  <script src="https://js.arcgis.com/4.12/"></script>
+
+		  <script>
+		    require([
+		      "esri/Map",
+		      "esri/views/MapView",
+		    ], function(Map, MapView) {
+
+		      var map = new Map({
+		        basemap: "topo-vector"
+		      });
+
+		      var view = new MapView({
+		        container: "viewDiv",
+		        map: map,
+		        center: [-118.80543,34.02700],
+		        zoom: 13
+		      });
+
+		    });
+		  </script>
+			<meta charset="utf-8">
+	    <title>PropSciences</title>
+	    <!-- Latest compiled and minified CSS -->
+
+	    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+	<!-- Optional theme -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+	{# MEDIUM STYLE EDITOR#}
+	<script src="//cdn.jsdelivr.net/medium-editor/latest/js/medium-editor.min.js"></script>
+	<link rel="stylesheet" href="//cdn.jsdelivr.net/medium-editor/latest/css/medium-editor.min.css" type="text/css" media="screen" charset="utf-8">
+
+
+	{# Custom CSS#}
+	<link rel="stylesheet" href="{% static 'css/master.css'%}">
+
+	{# Fonts#}
+	<link href="https://fonts.googleapis.com/css?family=Roboto:900|Rubik+Mono+One&display=swap" rel="stylesheet">
+
+	</head>
+	<body>
+		<nav class="navbar navbar-default techfont custom-navbar navbar navbar-dark bg-primary">
+					<div class="container">
+
+						<a class="navbar-brand mynav " href="{% url 'home' %}">PropSciences</a>
+
+							<ul class="nav navbar-nav navbar-right">
+								{% if user.is_authenticated %}
+											<li><a href="{% url 'posts:create' %}" class="btn btn-simple">AmenityMap</a></li>
+											<li><a href="{% url 'houses:uploadpics' %}" class="btn btn-simple">Analytics</a></li>
+											<li><a href="{% url 'groups:all' %}" class="btn btn-simple">Listings</a></li>
+											<li><a href="{% url 'groups:create' %}" class="btn btn-simple">Create Listing</a></li>
+											<li><a href="{% url 'accounts:logout' %}" class="btn btn-simple">Log out</a></li>
+								{% else %}
+											<li><a href="{% url 'groups:all' %}"class="btn btn-simple">Listings</a></li>
+											<li><a href="{% url 'accounts:login' %}" class="btn btn-simple">Log in</a></li>
+											<li><a href="{% url 'accounts:signup' %}" class="btn btn-simple">Sign up</a></li>
+								{% endif %}
+							</ul>
+
+
+
+					</div>
+				</nav>
+		<div id="viewDiv">
+
+		</div>
+	</body>
+</html>
